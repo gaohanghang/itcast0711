@@ -1,0 +1,43 @@
+<component name="libraryTable">
+  <library name="activiti-bpmn-converter-5.13">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/activiti-bpmn-converter-5.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-bpmn-layout-5.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-bpmn-model-5.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-camel-5.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-cdi.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-common-rest-5.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-cxf-5.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-diagram-rest-5.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-engine-5.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-explorer-5.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-json-converter-5.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-modeler-5.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-mule-5.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-osgi-5.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-rest-5.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-simple-workflow-5.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-spring-5.13.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/activiti-bpmn-converter-5.13-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-bpmn-layout-5.13-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-bpmn-model-5.13-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-camel-5.13-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-cdi-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-common-rest-5.13-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-cxf-5.13-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-diagram-rest-5.13-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-engine-5.13-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-explorer-5.13-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-json-converter-5.13-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-modeler-5.13-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-mule-5.13-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-osgi-5.13-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-rest-5.13-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-simple-workflow-5.13-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activiti-spring-5.13-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
