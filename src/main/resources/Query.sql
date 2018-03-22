@@ -16,5 +16,9 @@ SELECT * FROM act_ru_task     #正在执行的任务表（只有节点是UserTas
 
 SELECT * FROM act_hi_taskinst   #任务历史表（只有节点是UserTask的时候，该表中存在数据）
 
+SELECT * FROM act_hi_actimst  #所有活动节点的历史表
+
+
+
 
 
