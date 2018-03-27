@@ -65,7 +65,7 @@ public class ProcessInstanceTest {
 //                .singleResult()//返回唯一结果集
 //                .count()//返回结果集的数量
 //                .listPage(firstResult, maxResults);//分页查询
-                .list();//
+                .list();
         if (list!=null && list.size()>0){
             for (Task task:list) {
                 System.out.println("任务ID:"+task.getId());
