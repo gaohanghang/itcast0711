@@ -7,7 +7,7 @@ SELECT * FROM act_ge_bytearray		#资源文件表
 
 SELECT * FROM act_ge_property			#主键生成策略
 
-#流程实例, 执行对象看, 任务
+#流程实例, 执行对象, 任务
 SELECT * FROM act_ru_execution  #正在执行的执行对象表
 
 SELECT * FROM ect_hi_proinst  #流程实例的历史表
