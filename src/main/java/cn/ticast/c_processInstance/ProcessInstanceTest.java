@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.zip.ZipInputStream;
 
-public class ProcessInstance {
+public class ProcessInstanceTest {
 
     ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
 
@@ -49,12 +49,20 @@ public class ProcessInstance {
     @Test
     public void findMyPersonalTask(){
         String assignee = "张三";
-        List<Task> list = processEngine.getTaskService()//于与正在执行的任务管理相关的Service
+        List<Task> list = processEngine.getTaskService()//与正在执行的任务管理相关的Service
                 .createTaskQuery()//创建任务查询对象
+                /**查询条件（where部分）*/
                 .taskAssignee(assignee)//指定个人任务查询，指定办理人
 //                .taskCandidateUser(candidateUser)//组任务的办理人查询
-//                .processDefinitionId(processDefinitionId)
-                .list();
+//                .processDefinitionId(processDefinitionId)//使用流程实例ID查询
+//                .executionId(executionId)//使用执行对象ID查询
+                /**排序*/
+                .orderByTaskCreateTime().asc()//使用创建时间的升序排列
+                /**返回结果集*/
+//                .singleResult()//返回唯一结果集
+//                .count()//返回结果集的数量
+//                .listPage(firstResult, maxResults);//分页查询
+                .list();//
         if (list!=null && list.size()>0){
             for (Task task:list) {
                 System.out.println("任务ID:"+task.getId());
