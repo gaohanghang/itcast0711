@@ -148,6 +148,5 @@ public class ProcessVariablesTest {
                 System.out.println("##############################");
             }
         }
-
     }
 }

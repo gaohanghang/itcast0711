@@ -2,9 +2,13 @@ package cn.ticast.e_historyQuery;
 
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngines;
+import org.activiti.engine.history.HistoricActivityInstance;
 import org.activiti.engine.history.HistoricProcessInstance;
+import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.history.HistoricVariableInstance;
 import org.junit.Test;
+
+import java.util.List;
 
 public class HistoryQueryTest {
 
@@ -27,6 +31,59 @@ public class HistoryQueryTest {
     /**
      * 查询历史活动
      */
+    @Test
+    public void findHistoryActiviti() {
+        String processInstanceId = "3001";
+        List<HistoricActivityInstance> list = processEngine.getHistoryService()//
+                .createHistoricActivityInstanceQuery()//创建历史活动实例的查询
+                .processInstanceId(processInstanceId)//
+                .orderByHistoricActivityInstanceStartTime().asc()//
+                .list();
+
+        if (list!=null && list.size()>0) {
+            for (HistoricActivityInstance hai: list) {
+                System.out.println(hai.getId()+"   "+hai.getProcessInstanceId()+"  "+hai.getActivityType()+"  "+hai.getStartTime()+"  "+hai.getEndTime()+"  "+hai.getDurationInMillis());
+                System.out.println("###################");
+            }
+        }
+    }
+
+    /**
+     * 查询历史任务
+     */
+    @Test
+    public void findHistoryTask() {
+        String processInstanceId = "3001";
+        List<HistoricTaskInstance> list = processEngine.getHistoryService()//
+                .createHistoricTaskInstanceQuery()//创建历史活动实例的查询
+                .processInstanceId(processInstanceId)//
+                .orderByHistoricTaskInstanceStartTime().asc()
+                .list();
+
+        if (list!=null && list.size()>0) {
+            for (HistoricTaskInstance hai: list) {
+                System.out.println(hai.getId()+"   "+hai.getProcessInstanceId()+"  "+hai.getStartTime()+"  "+hai.getEndTime()+"  "+hai.getDurationInMillis());
+                System.out.println("###################");
+            }
+        }
+    }
+
+    /**查询流程变量的历史表*/
+    @Test
+    public void findHistoryProcessVariables() {
+        String processInstanceId = "3001";
+        List<HistoricVariableInstance> list = processEngine.getHistoryService()//
+                .createHistoricVariableInstanceQuery()//创建一个历史的流程变量
+                .processInstanceId(processInstanceId)//
+                .list();
+        if (list!=null && list.size()>0){
+            for (HistoricVariableInstance hvi:
+                    list) {
+                System.out.println(hvi.getId()+"   "+hvi.getProcessInstanceId()+"   "+hvi.getVariableName()+"   "+hvi.getVariableTypeName()+"   "+hvi.getValue());
+                System.out.println("##############################");
+            }
+        }
+    }
 
 
 }
