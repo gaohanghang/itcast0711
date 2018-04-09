@@ -9,7 +9,9 @@ import org.activiti.engine.task.IdentityLink;
 import org.activiti.engine.task.Task;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TaskTest {
 
@@ -38,8 +40,12 @@ public class TaskTest {
     public void setProcessEngine(){
         //流程定义的key
         String processDefinitionKey = "task";
+        /**启动流程实例的同时，设置流程变量用来指定任务的办理人，对应task.bpmn文件中的#{userIDs}*/
+        Map<String,Object> variables = new HashMap<>();
+        variables.put("userID", "大大,中中,小小" +
+                "");
         ProcessInstance pi = processEngine.getRuntimeService()//与正在执行的流程实例和执行对象相关的Service
-                .startProcessInstanceByKey(processDefinitionKey);//使用流程定义的key启动流程实例，key对应helloworld.bpmn文件中id的属性值，使用key值启动，默认是按照最新版本的流程定义启动
+                .startProcessInstanceByKey(processDefinitionKey,variables);//使用流程定义的key启动流程实例，key对应helloworld.bpmn文件中id的属性值，使用key值启动，默认是按照最新版本的流程定义启动
         System.out.println("流程实例ID："+pi.getId());//流程实例ID   101
         System.out.println("流程定义ID："+pi.getProcessDefinitionId());//流程定义ID  helloworld:1:4
     }
@@ -77,7 +83,7 @@ public class TaskTest {
      */
     @Test
     public void findMyGroupTask(){
-        String candidateUser = "小A";
+        String candidateUser = "大H";
         List<Task> list = processEngine.getTaskService()//与正在执行的任务管理相关的Service
                 .createTaskQuery()//创建任务查询对象
                 /**查询条件（where部分）*/
@@ -106,7 +112,7 @@ public class TaskTest {
     @Test
     public void completePersonalTask(){
         //任务ID
-        String taskId = "9704";
+        String taskId = "10204";
         processEngine.getTaskService()//与正在执行的任务管理相关的Service
                 .complete(taskId);
         System.out.println("完成任务：任务ID: "+taskId);
@@ -138,6 +144,46 @@ public class TaskTest {
         list.stream().forEach((e) -> System.out.println(e.getTaskId()+"   "+e.getType()+"   "+e.getProcessInstanceId()+"   "+e.getUserId()));
     }
 
+    /**拾取任务，将组任务分给个人任务，指定任务的办理人字段*/
+    @Test
+    public void claim() {
+        //将组任务分配给个人任务
+        //任务ID
+        String taskId = "10204";
+        //分配的个人任务（可以使组任务的成员，也可以是非组任务的成员）
+        String userId = "小A";
+        processEngine.getTaskService()//
+                    .claim(taskId, userId);
+    }
 
+    /**将个人任务回退到组任务,前提，之前一定是个组任务*/
+    @Test
+    public void setAssigee() {
+        //任务ID
+        String taskId = "10204";
+        processEngine.getTaskService()//
+                .setAssignee(taskId,null);
+    }
 
+    /**向组任务中添加成员*/
+    @Test
+    public void addGroupUser() {
+        //任务ID
+        String taskId = "10204";
+        //成员办理人
+        String userId = "大H";
+        processEngine.getTaskService()//
+                    .addCandidateUser(taskId, userId);
+    }
+
+    /**从组任务中删除成员*/
+    @Test
+    public void deleteGroupUser() {
+        //任务ID
+        String taskId = "10204";
+        //成员办理人
+        String userId = "小B";
+        processEngine.getTaskService()//
+                .delegateTask(taskId, userId);
+    }
 }
