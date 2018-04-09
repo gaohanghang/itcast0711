@@ -1,4 +1,4 @@
-package cn.ticast.l_group;
+package cn.ticast.m_groupUser;
 
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngines;

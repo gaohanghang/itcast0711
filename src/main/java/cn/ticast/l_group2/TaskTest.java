@@ -1,4 +1,4 @@
-package cn.ticast.l_group;
+package cn.ticast.l_group2;
 
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngines;
@@ -26,8 +26,8 @@ public class TaskTest {
         Deployment deployment = processEngine.getRepositoryService()//与流程定义和部署对象相关的Sevice
                 .createDeployment()//创建一个部署对象
                 .name("任务")//添加部署的名称
-                .addClasspathResource("diagrams/l_group/task.bpmn")//
-                .addClasspathResource("diagrams/l_group/task.png")
+                .addClasspathResource("diagrams/l_group2/task.bpmn")//
+                .addClasspathResource("diagrams/l_group2/task.png")
                 .deploy();//完成部署
         System.out.println("部署ID："+deployment.getId());//
         System.out.println("部署名称："+deployment.getName());//
@@ -40,11 +40,8 @@ public class TaskTest {
     public void setProcessEngine(){
         //流程定义的key
         String processDefinitionKey = "task";
-        /**启动流程实例的同时，设置流程变量用来指定任务的办理人，对应task.bpmn文件中的#{userIDs}*/
-        Map<String,Object> variables = new HashMap<>();
-        variables.put("userID", "大大,中中,小小");
         ProcessInstance pi = processEngine.getRuntimeService()//与正在执行的流程实例和执行对象相关的Service
-                .startProcessInstanceByKey(processDefinitionKey,variables);//使用流程定义的key启动流程实例，key对应helloworld.bpmn文件中id的属性值，使用key值启动，默认是按照最新版本的流程定义启动
+                .startProcessInstanceByKey(processDefinitionKey);//使用流程定义的key启动流程实例，key对应helloworld.bpmn文件中id的属性值，使用key值启动，默认是按照最新版本的流程定义启动
         System.out.println("流程实例ID："+pi.getId());//流程实例ID   101
         System.out.println("流程定义ID："+pi.getProcessDefinitionId());//流程定义ID  helloworld:1:4
     }
@@ -54,7 +51,7 @@ public class TaskTest {
      */
     @Test
     public void findMyPersonalTask(){
-        String assignee = "小A";
+        String assignee = "郭靖";
         List<Task> list = processEngine.getTaskService()//与正在执行的任务管理相关的Service
                 .createTaskQuery()//创建任务查询对象
                 /**查询条件（where部分）*/
@@ -82,7 +79,7 @@ public class TaskTest {
      */
     @Test
     public void findMyGroupTask(){
-        String candidateUser = "大H";
+        String candidateUser = "郭靖";
         List<Task> list = processEngine.getTaskService()//与正在执行的任务管理相关的Service
                 .createTaskQuery()//创建任务查询对象
                 /**查询条件（where部分）*/
@@ -111,7 +108,7 @@ public class TaskTest {
     @Test
     public void completePersonalTask(){
         //任务ID
-        String taskId = "10805";
+        String taskId = "11204";
         processEngine.getTaskService()//与正在执行的任务管理相关的Service
                 .complete(taskId);
         System.out.println("完成任务：任务ID: "+taskId);
@@ -148,9 +145,9 @@ public class TaskTest {
     public void claim() {
         //将组任务分配给个人任务
         //任务ID
-        String taskId = "10805";
+        String taskId = "11204";
         //分配的个人任务（可以使组任务的成员，也可以是非组任务的成员）
-        String userId = "大大";
+        String userId = "郭靖";
         processEngine.getTaskService()//
                     .claim(taskId, userId);
     }
